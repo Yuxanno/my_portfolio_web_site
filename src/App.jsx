@@ -6,23 +6,16 @@ import Skills from "./components/sections/Skills";
 import Projects from "./components/sections/Projects";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/common/Footer";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import LoadingScreen from "./components/common/LoadingScreen";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(true);
+  const [siteVisible, setSiteVisible] = useState(false);
 
   useEffect(() => {
     // Add loading class to body
     document.body.classList.add("loading");
-
-    // Initialize AOS
-    AOS.init({
-      duration: 1000,
-      easing: "ease-in-out",
-      once: false,
-      mirror: true,
-    });
 
     // Handle loading state
     const handleLoad = () => {
@@ -31,8 +24,18 @@ function App() {
         setIsLoading(false);
         document.body.classList.remove("loading");
         document.body.classList.add("loaded");
-        AOS.refresh();
-      }, 500);
+
+        // Hide loading screen and show site with fade-in effect
+        setTimeout(() => {
+          setShowLoadingScreen(false);
+          setSiteVisible(true);
+
+          // Trigger entrance animations after site is visible
+          setTimeout(() => {
+            document.body.classList.add("animations-ready");
+          }, 600);
+        }, 500);
+      }, 10);
     };
 
     // If page is already loaded
@@ -47,7 +50,7 @@ function App() {
       if (isLoading) {
         handleLoad();
       }
-    }, 2000);
+    }, 5000);
 
     return () => {
       window.removeEventListener("load", handleLoad);
@@ -56,19 +59,39 @@ function App() {
   }, [isLoading]);
 
   return (
-    <div
-      className={`bg-gray-900 text-gray-100 overflow-x-hidden ${
-        isLoading ? "loading" : "loaded"
-      }`}
-    >
-      <Header />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-      <Footer />
-    </div>
+    <>
+      {showLoadingScreen && (
+        <div
+          data-loading-screen
+          style={{
+            opacity: 1,
+            transition: "opacity 1s ease-out",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 9999,
+            backgroundColor: "#0f0f23",
+          }}
+        >
+          <LoadingScreen isVisible={showLoadingScreen} />
+        </div>
+      )}
+      <div
+        className={`bg-gray-900 text-gray-100 overflow-x-hidden transition-opacity duration-1000 ${
+          siteVisible ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <Header />
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+        <Footer />
+      </div>
+    </>
   );
 }
 

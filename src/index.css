@@ -45,9 +45,14 @@ body.loaded {
   opacity: 1;
 }
 
+/* Animations ready state */
+body.animations-ready .animate-on-scroll {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Prevent animations during initial load */
 .loading * {
-  animation-play-state: paused !important;
   transition: none !important;
 }
 
@@ -64,7 +69,6 @@ body.loaded {
 .loaded .animate-ping,
 .loaded .animate-spin {
   opacity: 1;
-  animation-play-state: running;
 }
 
 /* Mobile menu scroll management */
@@ -233,4 +237,30 @@ body.menu-open {
   100% {
     transform: translate(0, 0) scale(1);
   }
+}
+
+/* Enhanced particle animation */
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, 15px);
+  }
+  50% {
+    transform: translate(20px, 5px);
+  }
+  75% {
+    transform: translate(5px, 20px);
+  }
+}
+
+.particle-animation {
+  animation: particle-float 8s infinite ease-in-out;
+}
+
+/* Loading screen fade out */
+[data-loading-screen] {
+  transition: opacity 1s ease-out;
 }

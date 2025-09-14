@@ -5,7 +5,9 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
+    const bars = document.querySelector(".bars");
     setMobileMenuOpen(!mobileMenuOpen);
+    bars.classList.toggle("fa-xmark");
   };
 
   const closeMobileMenu = () => {
@@ -74,39 +76,16 @@ const Header = () => {
         {/* Animated navigation background - minimal */}
         <div className="absolute inset-0 opacity-5">
           {/* Navigation particles - minimal */}
-          <div
-            className="absolute top-2 left-16 w-0.5 h-0.5 bg-purple-400/20 rounded-full animate-pulse"
-            style={{ animationDelay: "0s", animationDuration: "6s" }}
-          ></div>
-          <div
-            className="absolute top-4 right-32 w-0.5 h-0.5 bg-blue-400/15 rounded-full animate-pulse"
-            style={{ animationDelay: "3s", animationDuration: "8s" }}
-          ></div>
-
-          {/* Energy streams - minimal */}
-          <div
-            className="absolute top-0 left-1/3 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-400/3 to-transparent animate-pulse"
-            style={{ animationDelay: "0s", animationDuration: "10s" }}
-          ></div>
-
-          {/* Orbiting nav elements - minimal */}
-          <div
-            className="absolute inset-0 animate-spin"
-            style={{ animationDuration: "50s" }}
-          >
-            <div className="absolute top-2 left-1/2 w-0.5 h-0.5 bg-white/10 rounded-full transform -translate-x-1/2"></div>
-          </div>
+          <div className="absolute top-2 left-16 w-0.5 h-0.5 bg-purple-400/20 rounded-full"></div>
+          <div className="absolute top-4 right-32 w-0.5 h-0.5 bg-blue-400/15 rounded-full"></div>
         </div>
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
-          <div className="text-xl font-semibold text-white glow relative group cursor-pointer">
-            RY
-            {/* Logo animations - minimal */}
-            <div
-              className="absolute -top-1 -left-1 w-6 h-6 border border-purple-400/15 rounded-full animate-pulse"
-              style={{ animationDelay: "0s", animationDuration: "5s" }}
-            ></div>
+          <div className="text-xl font-semibold text-white relative group cursor-pointer">
+            Web App Developer
           </div>
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden custom:flex space-x-8">
+            {" "}
+            {/* Changed from md:flex to custom:flex */}
             <a
               href="#home"
               onClick={(e) => handleSmoothScroll(e, "home")}
@@ -150,71 +129,66 @@ const Header = () => {
           </div>
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden text-gray-300 hover:text-white transition-all duration-300 relative group"
+            className="custom:hidden text-gray-300 hover:text-white transition-all duration-300 relative group" /* Changed from md:hidden to custom:hidden */
           >
-            <i className="fas fa-bars text-xl transform transition-transform duration-300 group-hover:rotate-90"></i>
+            <i className="bars fas fa-bars text-xl"></i>
           </button>
         </div>
       </nav>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 bg-gray-900/95 backdrop-blur-lg z-40 ${
+        className={`fixed inset-0 bg-gray-900/90 backdrop-blur-xl z-50 ${
           mobileMenuOpen ? "flex" : "hidden"
-        } flex-col items-center justify-center space-y-8 text-2xl relative overflow-hidden`}
+        } flex-col items-center justify-center space-y-8 text-2xl overflow-hidden`}
+        style={{
+          WebkitBackdropFilter: "blur(20px)",
+          backdropFilter: "blur(20px)",
+          overflow: "hidden",
+        }}
       >
-        {/* Mobile menu background animations - minimal */}
-        <div className="absolute inset-0 opacity-5">
-          {/* Floating orbs - minimal */}
-          <div
-            className="absolute top-16 left-16 w-4 h-4 bg-purple-400/20 rounded-full animate-pulse"
-            style={{ animationDelay: "0s", animationDuration: "5s" }}
-          ></div>
-          <div
-            className="absolute bottom-24 right-24 w-3 h-3 bg-blue-400/15 rounded-full animate-pulse"
-            style={{ animationDelay: "2.5s", animationDuration: "6s" }}
-          ></div>
+        <div className="flex flex-col items-center justify-center space-y-8">
+          <a
+            href="#home"
+            onClick={(e) => handleSmoothScroll(e, "home")}
+            className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group text-2xl"
+          >
+            Bosh sahifa
+            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></div>
+          </a>
+          <a
+            href="#about"
+            onClick={(e) => handleSmoothScroll(e, "about")}
+            className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group text-2xl"
+          >
+            Men haqimda
+            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></div>
+          </a>
+          <a
+            href="#skills"
+            onClick={(e) => handleSmoothScroll(e, "skills")}
+            className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group text-2xl"
+          >
+            Ko'nikmalar
+            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></div>
+          </a>
+          <a
+            href="#projects"
+            onClick={(e) => handleSmoothScroll(e, "projects")}
+            className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group text-2xl"
+          >
+            Loyihalar
+            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-400 transition-all duration-300 group-hover:w-full"></div>
+          </a>
+          <a
+            href="#contact"
+            onClick={(e) => handleSmoothScroll(e, "contact")}
+            className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group text-2xl"
+          >
+            Aloqa
+            <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></div>
+          </a>
         </div>
-        <a
-          href="#home"
-          onClick={(e) => handleSmoothScroll(e, "home")}
-          className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group"
-        >
-          Bosh sahifa
-          <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></div>
-        </a>
-        <a
-          href="#about"
-          onClick={(e) => handleSmoothScroll(e, "about")}
-          className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group"
-        >
-          Men haqimda
-          <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></div>
-        </a>
-        <a
-          href="#skills"
-          onClick={(e) => handleSmoothScroll(e, "skills")}
-          className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group"
-        >
-          Ko'nikmalar
-          <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></div>
-        </a>
-        <a
-          href="#projects"
-          onClick={(e) => handleSmoothScroll(e, "projects")}
-          className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group"
-        >
-          Loyihalar
-          <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-400 transition-all duration-300 group-hover:w-full"></div>
-        </a>
-        <a
-          href="#contact"
-          onClick={(e) => handleSmoothScroll(e, "contact")}
-          className="mobile-link text-gray-300 hover:text-white transition-all duration-300 relative group"
-        >
-          Aloqa
-          <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></div>
-        </a>
       </div>
     </>
   );
