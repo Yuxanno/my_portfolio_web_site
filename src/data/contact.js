@@ -7,33 +7,33 @@ export const contactData = {
   description:
     "Loyihangiz uchun dasturchi qidiryapsizmi? Hamkorlik imkoniyatlarini muhokama qilishdan xursand bo'laman.",
   email: {
-    address: "ravshanov@example.com",
+    address: "superprofi331@gmail.com",
     displayText: "Men bilan bog'lanish",
-    icon: "fas fa-phone",
+    icon: "fas fa-envelope",
   },
   socialMedia: [
     {
       id: "twitter",
       icon: "fab fa-twitter",
-      url: "#",
+      url: "https://twitter.com/yuxanno_dev",
       hoverColor: "hover:bg-purple-600/30 hover:border-purple-500",
     },
     {
       id: "linkedin",
       icon: "fab fa-linkedin",
-      url: "#",
+      url: "https://linkedin.com/in/yuxanno-ravshanov",
       hoverColor: "hover:bg-purple-600/30 hover:border-purple-500",
     },
     {
       id: "github",
       icon: "fab fa-github",
-      url: "#",
+      url: "https://github.com/Yuxanno",
       hoverColor: "hover:bg-purple-600/30 hover:border-purple-500",
     },
     {
       id: "telegram",
       icon: "fab fa-telegram",
-      url: "#",
+      url: "https://t.me/Shalo_on",
       hoverColor: "hover:bg-purple-600/30 hover:border-purple-500",
     },
   ],

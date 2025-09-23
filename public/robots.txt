@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://your-portfolio-url.com/sitemap.xml
+
+# Host
+Host: https://your-portfolio-url.com
+
+# Directories
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+
+# File types
+Disallow: /*.json$
+Disallow: /*.xml$

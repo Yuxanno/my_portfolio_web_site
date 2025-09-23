@@ -81,7 +81,7 @@ const Header = () => {
         </div>
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center relative z-10">
           <div className="text-xl font-semibold text-white relative group cursor-pointer">
-            Web App Developer
+            Ravshanov Yuxanno
           </div>
           <div className="hidden custom:flex space-x-8">
             {" "}

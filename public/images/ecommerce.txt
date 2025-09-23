@@ -1,0 +1,2 @@
+This is a placeholder for the ecommerce project image.
+In a real implementation, you would place an actual image here named ecommerce.png
