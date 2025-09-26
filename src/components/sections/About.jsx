@@ -1,411 +1,252 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useMemo } from "react";
+import { motion, LazyMotion, domAnimation } from "framer-motion";
+import { skillsData } from "../../data/skills";
 
 const About = () => {
+  // Timeline data for experience
+  const timelineData = useMemo(
+    () => [
+      {
+        year: "2024",
+        title: "Senior Full Stack Developer",
+        company: "Tech Innovations LLC",
+        description:
+          "React, Node.js va cloud yechimlari bo'yicha yetakchilik qildim",
+      },
+      {
+        year: "2022",
+        title: "Full Stack Developer",
+        company: "Digital Solutions Inc",
+        description:
+          "Mijozlarning veb-ilovalarini ishlab chiqishda ishtirok etdim",
+      },
+      {
+        year: "2020",
+        title: "Frontend Developer",
+        company: "WebCraft Studios",
+        description:
+          "Zamonaviy UI/UX yechimlarini yaratishda mutaxassislarning jamoasiga qo'shildim",
+      },
+      {
+        year: "2019",
+        title: "Dasturchi sifatida ishga kirish",
+        company: "",
+        description: "Dasturlash sohasiga kirish, JavaScript va CSS asoslari",
+      },
+    ],
+    []
+  );
+
+  // Extract skills for the skills cloud with useMemo for performance
+  const skills = useMemo(
+    () =>
+      skillsData.categories.flatMap((category) =>
+        category.skills.map((skill) => ({
+          name: skill.name,
+          icon: skill.icon,
+          iconColor: skill.iconColor,
+        }))
+      ),
+    [skillsData]
+  );
+
+  // Optimized particle generation
+  const particles = useMemo(
+    () =>
+      [...Array(12)].map((_, i) => ({
+        id: i,
+        top: Math.random() * 100,
+        left: Math.random() * 100,
+        delay: Math.random() * 2,
+        duration: 3 + Math.random() * 2,
+      })),
+    []
+  );
+
   return (
-    <section
-      id="about"
-      className="min-h-auto py-20 px-6 bg-gray-800/30 backdrop-blur-lg relative overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20"></div>
+    <LazyMotion features={domAnimation}>
+      <section
+        id="about"
+        className="min-h-auto py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden"
+      >
+        {/* Enhanced background with optimized animated particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500 rounded-full mix-blend-soft-light filter blur-3xl opacity-15 animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-72 h-72 bg-blue-500 rounded-full mix-blend-soft-light filter blur-3xl opacity-15 animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-500 rounded-full mix-blend-soft-light filter blur-3xl opacity-10 animate-pulse"></div>
 
-      {/* Background tech atmosphere - reduced */}
-      <div className="absolute inset-0 opacity-8">
-        {/* Floating code elements - reduced */}
-        <motion.div
-          className="absolute top-20 left-1/6 text-purple-400/25 text-sm"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          npm
-        </motion.div>
-        <motion.div
-          className="absolute top-40 right-1/5 text-blue-400/25 text-sm"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          git
-        </motion.div>
-        <motion.div
-          className="absolute bottom-32 left-1/8 text-cyan-400/25 text-sm"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          api
-        </motion.div>
-        <motion.div
-          className="absolute bottom-48 right-1/7 text-pink-400/25 text-sm"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          jsx
-        </motion.div>
+          {/* Optimized floating particles */}
+          {particles.map((particle) => (
+            <motion.div
+              key={particle.id}
+              className="absolute w-1 h-1 bg-purple-400 rounded-full"
+              style={{
+                top: `${particle.top}%`,
+                left: `${particle.left}%`,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.3, 0.8, 0.3],
+              }}
+              transition={{
+                duration: particle.duration,
+                repeat: Infinity,
+                delay: particle.delay,
+              }}
+            ></motion.div>
+          ))}
+        </div>
 
-        {/* Background grid - reduced */}
-        <motion.div
-          className="absolute top-1/6 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-400/5 to-transparent"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        ></motion.div>
-        <motion.div
-          className="absolute bottom-1/5 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-blue-400/5 to-transparent"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        ></motion.div>
-        <motion.div
-          className="absolute left-1/5 top-0 w-0.5 h-full bg-gradient-to-b from-transparent via-cyan-400/4 to-transparent"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        ></motion.div>
-        <motion.div
-          className="absolute right-1/6 top-0 w-0.5 h-full bg-gradient-to-b from-transparent via-pink-400/4 to-transparent"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        ></motion.div>
-
-        {/* Floating particles - reduced */}
-        <motion.div
-          className="absolute top-24 left-16 w-1 h-1 bg-purple-400/20 rounded-full"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        ></motion.div>
-        <motion.div
-          className="absolute top-64 right-20 w-1.5 h-1.5 bg-blue-400/15 rounded-full"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        ></motion.div>
-        <motion.div
-          className="absolute bottom-40 left-24 w-0.5 h-0.5 bg-cyan-400/30 rounded-full"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        ></motion.div>
-        <motion.div
-          className="absolute bottom-56 right-16 w-1 h-1 bg-pink-400/25 rounded-full"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        ></motion.div>
-      </div>
-
-      <div className="max-w-4xl mx-auto relative z-10">
-        <motion.h2
-          className="text-3xl md:text-4xl font-light mb-12 text-center text-white"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <i className="fas fa-user mr-4 text-purple-400"></i>
-          Men haqimda
-        </motion.h2>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+        <div className="max-w-6xl mx-auto relative z-10">
+          <motion.h2
+            className="text-4xl md:text-5xl font-bold mb-16 text-center text-white"
+            initial={{ opacity: 0, y: -30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.p
-              className="text-lg text-gray-300 mb-6 leading-relaxed"
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              Salom! Men 5 yildan ortiq tajribaga ega full stack dasturchiman.
-              Zamonaviy texnologiyalar va dasturlash yondashuvlariga
-              ixtisoslashganman.
-            </motion.p>
-            <motion.p
-              className="text-lg text-gray-300 mb-6 leading-relaxed"
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              Mening ishtiyoqim - intuitivli foydalanuvchi interfeyslari va
-              kengaytiriladigan backend yechimlarini yaratish. Doimo yangi
-              texnologiyalar va eng yaxshi amaliyotlarni o'rganishga intilaman.
-            </motion.p>
+            <span className="inline-block mr-4 text-5xl bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              👤
+            </span>
+            Men haqimda
+          </motion.h2>
 
-            <div className="flex flex-wrap gap-4">
-              {[
-                "Veb-dasturlash",
-                "API dizayn",
-                "Ma'lumotlar bazasi",
-                "DevOps",
-              ].map((item, index) => (
-                <motion.span
-                  key={index}
-                  className="bg-gray-700/50 backdrop-blur-sm border border-gray-600 text-gray-300 px-4 py-2 rounded-full text-sm shadow-xl hover:bg-purple-600/30 transition-all duration-300"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: 0.1 * index }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <i
-                    className={`fas ${
-                      ["fa-globe", "fa-plug", "fa-database", "fa-server"][index]
-                    } mr-2`}
-                  ></i>
-                  {item}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-10">
+            {/* Timeline Section with modern design */}
+            <motion.div
+              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-3xl p-8 border border-gray-700/50 shadow-2xl"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="flex items-center mb-8">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center mr-4">
+                  <i className="fas fa-history text-white"></i>
+                </div>
+                <h3 className="text-2xl font-bold text-white">
+                  Tajriba tarixi
+                </h3>
+              </div>
 
-          <motion.div
-            className="flex justify-center"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="w-64 h-64 relative flex items-center justify-center overflow-hidden">
-              {/* Background matrix rain effect */}
-              <div className="absolute inset-0 opacity-20">
-                {[
-                  "0101",
-                  "<div>",
-                  "func()",
-                  "var x",
-                  "=> {}",
-                  "console",
-                  "if()",
-                  "[0,1]",
-                  "class",
-                  "&&",
-                  "return",
-                  "()",
-                ].map((text, index) => (
+              <div className="relative">
+                {/* Timeline line with enhanced styling */}
+                <div className="absolute left-5 top-3 bottom-3 w-0.5 bg-gradient-to-b from-purple-500 via-blue-500 to-indigo-500 rounded-full"></div>
+
+                {/* Timeline items with modern cards */}
+                {timelineData.map((item, index) => (
                   <motion.div
                     key={index}
-                    className={`absolute text-xs element-fade-in text-${
-                      [
-                        "green",
-                        "blue",
-                        "purple",
-                        "cyan",
-                        "pink",
-                        "yellow",
-                        "red",
-                        "indigo",
-                        "orange",
-                        "teal",
-                        "violet",
-                        "lime",
-                      ][index % 12]
-                    }-400/30`}
-                    style={{
-                      top: `${index * 8}%`,
-                      left:
-                        index % 2 === 0 ? `${10 + (index % 5) * 10}%` : "auto",
-                      right:
-                        index % 2 === 1 ? `${10 + (index % 5) * 10}%` : "auto",
-                    }}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                    className="relative pb-10 last:pb-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
                   >
-                    {text}
+                    {/* Timeline connector with glow */}
+                    <div className="absolute left-0 top-3 w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shadow-lg shadow-purple-500/30 z-10">
+                      <div className="w-3 h-3 rounded-full bg-white"></div>
+                    </div>
+
+                    {/* Timeline card */}
+                    <div className="ml-16">
+                      <div className="bg-gray-700/30 backdrop-blur-sm rounded-2xl p-5 border border-gray-600/50 hover:border-purple-500/50 transition-all duration-300 group">
+                        <div className="flex justify-between items-start">
+                          <h4 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                            {item.title}
+                          </h4>
+                          <span className="text-sm font-bold bg-gradient-to-r from-purple-600/30 to-blue-600/30 text-purple-300 px-3 py-1 rounded-full backdrop-blur-sm border border-purple-500/30">
+                            {item.year}
+                          </span>
+                        </div>
+
+                        {item.company && (
+                          <p className="text-blue-300 mt-2 font-medium">
+                            {item.company}
+                          </p>
+                        )}
+
+                        <p className="text-gray-300 mt-3 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Skills Cloud Section with radial layout */}
+            <motion.div
+              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl rounded-3xl p-8 border border-gray-700/50 shadow-2xl"
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="flex items-center mb-8">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center mr-4">
+                  <i className="fas fa-code text-white"></i>
+                </div>
+                <h3 className="text-2xl font-bold text-white">Ko'nikmalar</h3>
+              </div>
+
+              {/* Skills grid with enhanced styling */}
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-4">
+                {skills.map((skill, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex flex-col items-center justify-center p-5 bg-gray-700/30 backdrop-blur-sm rounded-2xl border border-gray-600/50 hover:border-blue-500/50 transition-all duration-300 group"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 0.05 * index }}
+                    whileHover={{
+                      scale: 1.1,
+                      backgroundColor: "rgba(59, 130, 246, 0.2)",
+                      y: -8,
+                      boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)",
+                    }}
+                  >
+                    <motion.i
+                      className={`${skill.icon} ${skill.iconColor} text-3xl mb-3 group-hover:text-blue-300 transition-colors duration-300`}
+                      whileHover={{
+                        rotate: [0, -15, 15, 0],
+                        scale: 1.3,
+                      }}
+                      transition={{ duration: 0.4 }}
+                    ></motion.i>
+                    <span className="text-gray-300 text-sm text-center group-hover:text-white transition-colors duration-300 font-medium">
+                      {skill.name}
+                    </span>
                   </motion.div>
                 ))}
               </div>
 
-              {/* Animated geometric shapes */}
-              <div className="absolute inset-0">
-                <motion.div
-                  className="absolute top-0 left-0 w-16 h-16 bg-purple-500/40 rounded-lg"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute top-0 right-0 w-12 h-12 bg-blue-500/40 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute bottom-0 left-0 w-14 h-14 bg-cyan-500/40 rounded-lg"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute bottom-0 right-0 w-10 h-10 bg-pink-500/40 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-purple-400/30 to-blue-400/30 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                ></motion.div>
-
-                {/* Additional floating particles */}
-                <motion.div
-                  className="absolute top-4 left-1/2 w-6 h-6 bg-yellow-500/50 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute bottom-4 right-1/4 w-8 h-8 bg-green-500/40 rounded-lg"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute left-4 top-1/3 w-5 h-5 bg-red-500/50 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute right-8 bottom-1/3 w-7 h-7 bg-indigo-500/40 rotate-45"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                ></motion.div>
-
-                {/* More micro particles */}
-                <motion.div
-                  className="absolute top-6 left-6 w-3 h-3 bg-emerald-500/60 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute bottom-6 right-6 w-4 h-4 bg-rose-500/50 rounded-lg"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute top-10 right-10 w-2 h-2 bg-amber-500/70 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute bottom-10 left-10 w-3 h-3 bg-sky-500/60 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute top-14 left-20 w-2 h-2 bg-fuchsia-500/80 rounded-full"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                ></motion.div>
-                <motion.div
-                  className="absolute bottom-14 right-14 w-4 h-4 bg-lime-500/50 rounded-lg"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                ></motion.div>
-
-                {/* Floating code symbols */}
-                {["{}", "</>", "( )", "[]", "===", "!==", "&&", "||"].map(
-                  (symbol, index) => (
-                    <motion.div
-                      key={index}
-                      className={`absolute text-sm element-fade-in text-gray-400/60`}
-                      style={{
-                        top:
-                          index % 2 === 0
-                            ? `${20 + (index % 3) * 15}%`
-                            : "auto",
-                        bottom:
-                          index % 2 === 1
-                            ? `${20 + (index % 3) * 15}%`
-                            : "auto",
-                        left:
-                          index % 2 === 1
-                            ? `${10 + (index % 4) * 12}%`
-                            : "auto",
-                        right:
-                          index % 2 === 0
-                            ? `${10 + (index % 4) * 12}%`
-                            : "auto",
-                      }}
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      {symbol}
-                    </motion.div>
-                  )
-                )}
-              </div>
-
-              {/* Central element with enhanced animation */}
+              {/* About text with enhanced styling */}
               <motion.div
-                className="relative z-10 w-24 h-24 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center shadow-xl"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                className="mt-10 pt-6 border-t border-gray-700/50"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 20,
-                  delay: 0.2,
-                }}
-                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <i className="fas fa-code text-2xl text-white"></i>
+                <div className="bg-gradient-to-r from-gray-700/50 to-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-600/50">
+                  <p className="text-gray-300 leading-relaxed text-base">
+                    Men 5 yildan ortiq tajribaga ega full stack dasturchiman.
+                    Zamonaviy texnologiyalar va dasturlash yondashuvlariga
+                    ixtisoslashganman. Mening ishtiyoqim - intuitiv
+                    foydalanuvchi interfeyslari va kengaytiriladigan backend
+                    yechimlarini yaratish. Doimo yangi texnologiyalar va eng
+                    yaxshi amaliyotlarni o'rganishga intilaman.
+                  </p>
+                </div>
               </motion.div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </LazyMotion>
   );
 };
 

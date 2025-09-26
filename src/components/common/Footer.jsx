@@ -1,40 +1,108 @@
 const Footer = () => {
   const thisyear = new Date().getFullYear();
 
+  // Background elements data
+  const backgroundElements = [
+    // Digital rain
+    {
+      type: "text",
+      top: "top-2",
+      left: "left-8",
+      color: "text-blue-400/20",
+      content: "©",
+    },
+    {
+      type: "text",
+      top: "top-4",
+      right: "right-12",
+      color: "text-purple-400/20",
+      content: "®",
+    },
+    {
+      type: "text",
+      top: "top-6",
+      left: "left-20",
+      color: "text-cyan-400/20",
+      content: "™",
+    },
+    {
+      type: "text",
+      top: "top-3",
+      right: "right-24",
+      color: "text-pink-400/20",
+      content: "§",
+    },
+
+    // Code symbols
+    {
+      type: "text",
+      top: "top-2",
+      left: "left-16",
+      color: "text-blue-400/15",
+      content: "{}",
+    },
+    {
+      type: "text",
+      top: "top-5",
+      right: "right-16",
+      color: "text-purple-400/15",
+      content: "</>",
+    },
+    {
+      type: "text",
+      top: "top-4",
+      left: "left-32",
+      color: "text-cyan-400/15",
+      content: "[ ]",
+    },
+
+    // Floating particles
+    {
+      type: "particle",
+      top: "top-1",
+      left: "left-12",
+      size: "w-0.5 h-0.5",
+      color: "bg-blue-400/30",
+    },
+    {
+      type: "particle",
+      top: "top-6",
+      right: "right-8",
+      size: "w-1 h-1",
+      color: "bg-purple-400/25",
+    },
+    {
+      type: "particle",
+      top: "top-4",
+      left: "left-28",
+      size: "w-0.5 h-0.5",
+      color: "bg-cyan-400/40",
+    },
+    {
+      type: "particle",
+      top: "top-7",
+      right: "right-20",
+      size: "w-1 h-1",
+      color: "bg-pink-400/30",
+    },
+  ];
+
   return (
     <footer className="py-8 px-6 border-t border-gray-700 bg-gray-900/50 backdrop-blur-lg relative overflow-hidden section-fade-in">
       {/* Animated footer background - reduced */}
       <div className="absolute inset-0 opacity-8">
-        {/* Digital rain - reduced */}
-        <div className="absolute top-2 left-8 text-blue-400/20 text-xs element-fade-in delay-100">
-          ©
-        </div>
-        <div className="absolute top-4 right-12 text-purple-400/20 text-xs element-fade-in delay-200">
-          ®
-        </div>
-        <div className="absolute top-6 left-20 text-cyan-400/20 text-xs element-fade-in delay-300">
-          ™
-        </div>
-        <div className="absolute top-3 right-24 text-pink-400/20 text-xs element-fade-in delay-400">
-          §
-        </div>
-
-        {/* Code symbols rain - reduced */}
-        <div className="absolute top-2 left-16 text-blue-400/15 text-xs element-fade-in delay-100">
-          {"{}"}
-        </div>
-        <div className="absolute top-5 right-16 text-purple-400/15 text-xs element-fade-in delay-200">
-          {"</>"}
-        </div>
-        <div className="absolute top-4 left-32 text-cyan-400/15 text-xs element-fade-in delay-300">
-          [ ]
-        </div>
-
-        {/* Floating particles - reduced */}
-        <div className="absolute top-1 left-12 w-0.5 h-0.5 bg-blue-400/30 rounded-full element-fade-in delay-100"></div>
-        <div className="absolute top-6 right-8 w-1 h-1 bg-purple-400/25 rounded-full element-fade-in delay-200"></div>
-        <div className="absolute top-4 left-28 w-0.5 h-0.5 bg-cyan-400/40 rounded-full element-fade-in delay-300"></div>
-        <div className="absolute top-7 right-20 w-1 h-1 bg-pink-400/30 rounded-full element-fade-in delay-400"></div>
+        {backgroundElements.map((element, index) => (
+          <div
+            key={index}
+            className={`absolute ${element.top || ""} ${element.left || ""} ${
+              element.right || ""
+            } ${element.color} text-xs element-fade-in delay-${
+              (index + 1) * 100
+            } ${element.size || ""}`}
+          >
+            {element.content || ""}
+          </div>
+        ))}
       </div>
       <div className="max-w-6xl mx-auto element-fade-in delay-200">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">

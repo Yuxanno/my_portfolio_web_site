@@ -13,18 +13,6 @@ export const contactData = {
   },
   socialMedia: [
     {
-      id: "twitter",
-      icon: "fab fa-twitter",
-      url: "https://twitter.com/yuxanno_dev",
-      hoverColor: "hover:bg-purple-600/30 hover:border-purple-500",
-    },
-    {
-      id: "linkedin",
-      icon: "fab fa-linkedin",
-      url: "https://linkedin.com/in/yuxanno-ravshanov",
-      hoverColor: "hover:bg-purple-600/30 hover:border-purple-500",
-    },
-    {
       id: "github",
       icon: "fab fa-github",
       url: "https://github.com/Yuxanno",

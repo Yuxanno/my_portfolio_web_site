@@ -21,6 +21,31 @@ const Contact = () => {
     window.open("https://github.com/Yuxanno", "_blank");
   };
 
+  // Background elements data
+  const backgroundElements = {
+    nodes: [
+      { top: 16, left: 16, size: 4, color: "purple", opacity: 60 },
+      { top: 24, right: 24, size: 3, color: "blue", opacity: 70 },
+      { top: 50, left: 20, size: 3, color: "yellow", opacity: 70 },
+      { top: 33, right: 25, size: 2, color: "green", opacity: 80 },
+    ],
+    lines: [
+      { top: 16, left: 16, width: 32, rotate: 12, color: "purple" },
+      { top: 50, left: 20, width: 28, rotate: -20, color: "yellow" },
+    ],
+    streams: [
+      { side: "left", position: 25, color: "purple" },
+      { side: "right", position: 33, color: "blue" },
+    ],
+    digits: [
+      { top: 40, right: 25, text: "10", color: "blue" },
+      { top: 28, left: 20, text: "101", color: "teal" },
+      { bottom: 56, right: 14, text: "001", color: "lime" },
+      { top: 33, left: 8, text: "111", color: "red" },
+      { top: 75, right: 8, text: "000", color: "indigo" },
+    ],
+  };
+
   return (
     <section
       id="contact"
@@ -31,12 +56,7 @@ const Contact = () => {
       {/* Neural network background */}
       <div className="absolute inset-0 opacity-20">
         {/* Network nodes */}
-        {[
-          { top: 16, left: 16, size: 4, color: "purple", opacity: 60 },
-          { top: 24, right: 24, size: 3, color: "blue", opacity: 70 },
-          { top: 50, left: 20, size: 3, color: "yellow", opacity: 70 },
-          { top: 33, right: 25, size: 2, color: "green", opacity: 80 },
-        ].map((node, index) => (
+        {backgroundElements.nodes.map((node, index) => (
           <motion.div
             key={index}
             className={`absolute w-${node.size} h-${node.size} bg-${node.color}-400/${node.opacity} rounded-full`}
@@ -52,10 +72,7 @@ const Contact = () => {
         ))}
 
         {/* Connection lines */}
-        {[
-          { top: 16, left: 16, width: 32, rotate: 12, color: "purple" },
-          { top: 50, left: 20, width: 28, rotate: -20, color: "yellow" },
-        ].map((line, index) => (
+        {backgroundElements.lines.map((line, index) => (
           <motion.div
             key={index}
             className={`absolute h-0.5 bg-gradient-to-r from-${line.color}-400/30 to-transparent transform`}
@@ -73,10 +90,7 @@ const Contact = () => {
         ))}
 
         {/* Data streams */}
-        {[
-          { side: "left", position: 25, color: "purple" },
-          { side: "right", position: 33, color: "blue" },
-        ].map((stream, index) => (
+        {backgroundElements.streams.map((stream, index) => (
           <motion.div
             key={index}
             className={`absolute top-0 w-0.5 h-full bg-gradient-to-b from-transparent via-${stream.color}-400/20 to-transparent`}
@@ -89,13 +103,7 @@ const Contact = () => {
         ))}
 
         {/* Floating binary digits */}
-        {[
-          { top: 40, right: 25, text: "10", color: "blue" },
-          { top: 28, left: 20, text: "101", color: "teal" },
-          { bottom: 56, right: 14, text: "001", color: "lime" },
-          { top: 33, left: 8, text: "111", color: "red" },
-          { top: 75, right: 8, text: "000", color: "indigo" },
-        ].map((digit, index) => (
+        {backgroundElements.digits.map((digit, index) => (
           <motion.div
             key={index}
             className={`absolute text-xs text-${digit.color}-400/40`}
@@ -154,7 +162,6 @@ const Contact = () => {
             ></i>
             Men bilan bog'lanish
           </AnimatedButton>
-          <br />
           <div className="flex gap-4">
             <TelegramButton onClick={handleTelegramClick} />
             <GitHubButton onClick={handleGitHubClick} />

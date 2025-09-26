@@ -16,7 +16,6 @@ Professional portfolio website built with React, Vite, and TailwindCSS.
 - Vite
 - TailwindCSS
 - Framer Motion
-- React Icons
 
 ## Setup Instructions
 
@@ -33,6 +32,17 @@ Professional portfolio website built with React, Vite, and TailwindCSS.
    ```bash
    npm run build
    ```
+
+## Performance Optimizations
+
+This portfolio has been optimized for performance with:
+
+- Code splitting for faster initial loads
+- Lazy loading images
+- Optimized animations with hardware acceleration
+- Reduced bundle size by removing unused dependencies
+- CSS optimization with TailwindCSS
+- Efficient build configuration with Vite
 
 ## SEO Features
 
