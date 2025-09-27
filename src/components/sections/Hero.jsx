@@ -7,7 +7,7 @@ const Hero = () => {
     <LazyMotion features={domAnimation}>
       <section
         id="home"
-        className="h-screen flex items-center justify-center px-6 relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden"
       >
         {/* Фоновые круги - simplified for performance */}
         <div className="absolute inset-0 opacity-20">

@@ -8,27 +8,12 @@
 /* Enhanced smooth scrolling for better browser support and performance */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
-}
-
-/* Ensure all elements respect the navbar offset */
-* {
-  scroll-margin-top: 80px;
-}
-
-/* Force fixed positioning for navigation */
-nav {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 9999 !important;
 }
 
 body {
@@ -38,10 +23,8 @@ body {
   overflow-y: auto;
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
-  transform: translateZ(0);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-top: 0 !important;
 }
 
 /* Mobile menu scroll management */
@@ -67,26 +50,6 @@ body.menu-open {
 .project-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(99, 102, 241, 0.3);
-}
-
-.nav-link {
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6);
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
 }
 
 .btn-primary {

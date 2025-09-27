@@ -1,4 +1,4 @@
-import Header from "./components/common/Header";
+import NavigationBar from "./components/common/NavigationBar";
 import Footer from "./components/common/Footer";
 import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
@@ -9,7 +9,7 @@ import Contact from "./components/sections/Contact";
 function App() {
   return (
     <div className="bg-gray-900 text-gray-100 overflow-x-hidden">
-      <Header />
+      <NavigationBar />
       <div>
         <Hero />
         <About />

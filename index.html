@@ -95,7 +95,7 @@
         align-items: center;
         justify-content: center;
         gap: 20px;
-        z-index: 9999;
+        z-index: 9998;
         animation: float 3s ease-in-out infinite;
       }
 
@@ -211,6 +211,9 @@
     </style>
   </head>
   <body>
+    <!-- React root -->
+    <div id="root"></div>
+
     <!-- 🚀 Initial Loader -->
     <div id="initial-loader">
       <div class="spinner"></div>
@@ -232,9 +235,6 @@
       </div>
     </div>
 
-    <!-- React root -->
-    <div id="root" style="display:none"></div>
-
     <!-- React bundle -->
     <script type="module" src="/src/main.jsx"></script>
 
@@ -248,7 +248,6 @@
           loader.classList.add("fade-out");
           setTimeout(() => {
             loader.style.display = "none";
-            root.style.display = "block";
             document.body.style.overflow = "auto";
           }, 500);
         }
